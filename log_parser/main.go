@@ -15,20 +15,20 @@ func main() {
 	in := bufio.NewScanner(os.Stdin)
 
 	for in.Scan() {
-		res, err := parse(&p, in.Text())
-
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
+		res := parse(&p, in.Text())
 
 		update(&p, res)
 	}
 
 	summarize(p)
+	dumpErr([]error{in.Err(), err(p)})
+}
 
-	if err := in.Err(); err != nil {
-		fmt.Println("Err", err)
+func dumpErr(errs []error) {
+	for _, err := range errs {
+		if err != nil {
+			fmt.Println("Err", err)
+		}
 	}
 }
 
