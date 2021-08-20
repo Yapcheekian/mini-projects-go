@@ -18,8 +18,8 @@ type parser struct {
 	lerr    error
 }
 
-func newParser() parser {
-	return parser{
+func newParser() *parser {
+	return &parser{
 		sum: make(map[string]result),
 	}
 }
@@ -67,6 +67,6 @@ func update(p *parser, res result) {
 	p.sum[res.domain] = r
 }
 
-func err(p parser) error {
+func err(p *parser) error {
 	return p.lerr
 }

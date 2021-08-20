@@ -15,9 +15,9 @@ func main() {
 	in := bufio.NewScanner(os.Stdin)
 
 	for in.Scan() {
-		res := parse(&p, in.Text())
+		res := parse(p, in.Text())
 
-		update(&p, res)
+		update(p, res)
 	}
 
 	summarize(p)
@@ -32,7 +32,7 @@ func dumpErr(errs []error) {
 	}
 }
 
-func summarize(p parser) {
+func summarize(p *parser) {
 	fmt.Printf("%-30s %10s\n", "DOMAIN", "VISITS")
 	fmt.Println(strings.Repeat("-", 45))
 
